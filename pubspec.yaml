@@ -91,3 +91,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  
+  fonts:
+    - family: EasyWeatherIcons
+      fonts:
+        - asset: assets/fonts/easy_weather_icons_font.ttf

@@ -32,7 +32,8 @@ class ForecastProvider {
 
     // 'https://api.open-meteo.com/v1/forecast?latitude=49.97606&longitude=9.14163&hourly=temperature_2m,precipitation,cloud_cover&forecast_days=1';
     final url =
-        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&hourly=temperature_2m,precipitation,cloud_cover&forecast_days=3";
+        "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&hourly=temperature_2m,precipitation,cloud_cover,weather_code"
+        "&forecast_days=3";
 
     final response = await _client.get(Uri.parse(url));
     if (response.statusCode != 200) {
@@ -49,11 +50,13 @@ class ForecastProvider {
     List<double?> temps = [];
     List<double?> precipAmounts = [];
     List<int?> cloudCovers = [];
+    List<int?> weatherCodes = [];
 
     times = List<String>.from(data['hourly']['time']);
     temps = List<double?>.from(data['hourly']['temperature_2m']);
     precipAmounts = List<double?>.from(data['hourly']['precipitation']);
     cloudCovers = List<int?>.from(data['hourly']['cloud_cover']);
+    weatherCodes = List<int?>.from(data['hourly']['weather_code']);
 
     var timezoneName = latLngToTimezoneString(lat, lon);
     final tzLocation = tz.getLocation(timezoneName);
@@ -67,6 +70,7 @@ class ForecastProvider {
         data.temp = temps[i];
         data.precipAmount = precipAmounts[i];
         data.cloudCover = cloudCovers[i];
+        data.weatherCode = weatherCodes[i];
         hourlyForecast.add(data);
       }
     }

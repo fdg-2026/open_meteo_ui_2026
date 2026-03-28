@@ -9,7 +9,7 @@ class ForecastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final weekDayFormatter = DateFormat('E. hh:00');
+    final weekDayFormatter = DateFormat('E. HH:00');
     double normalFontSize = 13;
 
     return Card(
@@ -21,7 +21,12 @@ class ForecastCard extends StatelessWidget {
             weekDayFormatter.format(weather.localTime),
             style: TextStyle(fontSize: normalFontSize),
           ),
-          SizedBox(width: 13),
+          Container(
+            width: 45,
+            alignment: Alignment.centerRight,
+            child: Icon(weather.weatherIcon, size: 30),
+          ),
+
           if (weather.temp != null)
             Container(
               width: 50,
