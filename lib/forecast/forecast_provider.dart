@@ -33,7 +33,7 @@ class ForecastProvider {
     // 'https://api.open-meteo.com/v1/forecast?latitude=49.97606&longitude=9.14163&hourly=temperature_2m,precipitation,cloud_cover&forecast_days=1';
     final url =
         "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&hourly=temperature_2m,precipitation,cloud_cover,weather_code"
-        "&forecast_days=3";
+        ",precipitation_probability,wind_direction_10m,wind_speed_10m,surface_pressure&forecast_days=3";
 
     final response = await _client.get(Uri.parse(url));
     if (response.statusCode != 200) {
@@ -49,14 +49,22 @@ class ForecastProvider {
     List<String> times = [];
     List<double?> temps = [];
     List<double?> precipAmounts = [];
+    List<int?> precipProbs = [];
     List<int?> cloudCovers = [];
     List<int?> weatherCodes = [];
+    List<double?> windSpeeds = [];
+    List<int?> windDirections = [];
+    List<double?> pressures = [];
 
     times = List<String>.from(data['hourly']['time']);
     temps = List<double?>.from(data['hourly']['temperature_2m']);
     precipAmounts = List<double?>.from(data['hourly']['precipitation']);
+    precipProbs = List<int?>.from(data['hourly']['precipitation_probability']);
     cloudCovers = List<int?>.from(data['hourly']['cloud_cover']);
     weatherCodes = List<int?>.from(data['hourly']['weather_code']);
+    windSpeeds = List<double?>.from(data['hourly']['wind_speed_10m']);
+    windDirections = List<int?>.from(data['hourly']['wind_direction_10m']);
+    pressures = List<double?>.from(data['hourly']['surface_pressure']);
 
     var timezoneName = latLngToTimezoneString(lat, lon);
     final tzLocation = tz.getLocation(timezoneName);
@@ -69,8 +77,12 @@ class ForecastProvider {
         var data = WeatherData(localTime);
         data.temp = temps[i];
         data.precipAmount = precipAmounts[i];
+        data.precipProb = precipProbs[i];
         data.cloudCover = cloudCovers[i];
         data.weatherCode = weatherCodes[i];
+        data.windSpeed = windSpeeds[i];
+        data.windDirection = windDirections[i];
+        data.pressure = pressures[i];
         hourlyForecast.add(data);
       }
     }

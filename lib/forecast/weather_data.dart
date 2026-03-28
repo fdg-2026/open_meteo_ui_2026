@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class WeatherData {
@@ -5,7 +7,11 @@ class WeatherData {
   double? temp;
   int? cloudCover;
   double? precipAmount;
+  int? precipProb;
   int? weatherCode;
+  double? windSpeed;
+  int? windDirection;
+  double? pressure;
 
   WeatherData(this.localTime);
 
@@ -78,5 +84,16 @@ class WeatherData {
       return const IconData(0xE931, fontFamily: 'EasyWeatherIcons');
     }
     return const IconData(0xE900, fontFamily: 'EasyWeatherIcons');
+  }
+
+  Widget get windDirectionIcon {
+    // OpenMeteo windDirection = 0 means wind from north (info from ChatGPT).
+    // Because navigation_outlined icon shows upward, we have to add 180° which is pi in radians
+    var angle = windDirection != null ? windDirection! * pi / 180 + pi : 0.0;
+
+    return Transform.rotate(
+      angle: angle,
+      child: Icon(Icons.navigation_outlined, size: 14),
+    );
   }
 }
