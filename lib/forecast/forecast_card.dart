@@ -23,21 +23,34 @@ class ForecastCard extends StatelessWidget {
           ),
           SizedBox(width: 13),
           if (weather.temp != null)
-            Text(
-              "${weather.temp!.toStringAsFixed(1)}°C",
-              style: TextStyle(fontSize: normalFontSize),
+            Container(
+              width: 50,
+              alignment: Alignment.centerRight,
+
+              child: Text(
+                "${weather.temp!.toStringAsFixed(1)}°C",
+                style: TextStyle(fontSize: normalFontSize),
+              ),
             ),
-          SizedBox(width: 13),
+
           if (weather.cloudCover != null)
-            Text(
-              "⛅ ${weather.cloudCover!.toStringAsFixed(0)}%",
-              style: TextStyle(fontSize: normalFontSize),
+            Container(
+              width: 63,
+              alignment: Alignment.centerRight,
+              child: Text(
+                "⛅ ${weather.cloudCover!.toStringAsFixed(0)}%",
+                style: TextStyle(fontSize: normalFontSize),
+              ),
             ),
-          SizedBox(width: 13),
           if (weather.precipAmount != null)
-            Text(
-              "💧 ${weather.precipAmount!}mm",
-              style: TextStyle(fontSize: normalFontSize),
+            Container(
+              width: 60,
+              alignment: Alignment.centerRight,
+
+              child: Text(
+                "💧 ${weather.precipAmount!}mm",
+                style: TextStyle(fontSize: normalFontSize),
+              ),
             ),
         ],
       ),
