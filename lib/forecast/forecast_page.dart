@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../location/location_provider.dart';
+import 'forecast_card.dart';
 import 'forecast_provider.dart';
 
 class ForecastPage extends StatefulWidget {
@@ -52,30 +53,11 @@ class _ForecastPageState extends State<ForecastPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (var e in widget.forecastProvider.hourlyForecast)
-                      Text(
-                        "${e.localTime}: ${e.temp}°C, ${e.precipAmount}mm, ${e.cloudCover}%",
-                      ),
+                      ForecastCard(weather: e),
                   ],
                 ),
               ),
             ),
-
-          // Alternative with ListView instead of SingleChildScrollView & Column:
-          // Here without "Expanded" you get here the "famous" exception:
-          // vertical viewport was given unbounded height, see https://www.youtube.com/watch?v=jckqXR5CrPI
-          // This video is at the end of https://docs.flutter.dev/ui/layout/constraints which we had discussed
-          // on slides 30 and 31 of https://github.com/GuentherSchmitt/fdg_2024/blob/main/docs/15a%20Flying%20balls.pdf
-          // BTW: on Android the exception is shown on the left under "Run and Debug", on Chrome it is logged in Debug Console.
-          // Expanded(
-          //   child: ListView(
-          //     children: [
-          //       for (var e in widget.forecastProvider.hourlyForecast)
-          //         Text(
-          //           "${e.localTime}: ${e.temp}°C, ${e.precipAmount}mm, ${e.cloudCover}%",
-          //         ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
     );

@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'weather_data.dart';
+
+class ForecastCard extends StatelessWidget {
+  const ForecastCard({super.key, required this.weather});
+
+  final WeatherData weather;
+
+  @override
+  Widget build(BuildContext context) {
+    final weekDayFormatter = DateFormat('E. hh:00');
+    double normalFontSize = 13;
+
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+      child: Row(
+        children: [
+          SizedBox(width: 13),
+          Text(
+            weekDayFormatter.format(weather.localTime),
+            style: TextStyle(fontSize: normalFontSize),
+          ),
+          SizedBox(width: 13),
+          if (weather.temp != null)
+            Text(
+              "${weather.temp!.toStringAsFixed(1)}°C",
+              style: TextStyle(fontSize: normalFontSize),
+            ),
+          SizedBox(width: 13),
+          if (weather.cloudCover != null)
+            Text(
+              "⛅ ${weather.cloudCover!.toStringAsFixed(0)}%",
+              style: TextStyle(fontSize: normalFontSize),
+            ),
+          SizedBox(width: 13),
+          if (weather.precipAmount != null)
+            Text(
+              "💧 ${weather.precipAmount!}mm",
+              style: TextStyle(fontSize: normalFontSize),
+            ),
+        ],
+      ),
+    );
+  }
+}
