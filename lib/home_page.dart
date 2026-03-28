@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'forecast/forecast_page.dart';
 import 'forecast/forecast_provider.dart';
 import 'location/location_provider.dart';
 
@@ -22,14 +23,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var hourlyForecast = widget.forecastProvider.hourlyForecast;
     var screens = [
-      Center(
-        child: Text(
-          hourlyForecast.isEmpty
-              ? "no forecast available"
-              : "forecast for ${widget.forecastProvider.hourlyForecast[0].localTime}",
-        ),
+      ForecastPage(
+        locationProvider: widget.locationProvider,
+        forecastProvider: widget.forecastProvider,
       ),
       const Center(child: Text("radar page")),
     ];
