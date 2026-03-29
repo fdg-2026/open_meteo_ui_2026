@@ -36,6 +36,9 @@ class _ForecastPageState extends State<ForecastPage> {
   @override
   Widget build(BuildContext context) {
     var forecastExists = widget.forecastProvider.hourlyForecast.isNotEmpty;
+    var screenHeight = MediaQuery.of(context).size.height;
+    const minHeightForNextHourForecast = 420;
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +49,9 @@ class _ForecastPageState extends State<ForecastPage> {
           if (loading) const Center(child: CircularProgressIndicator()),
           if (!loading && !forecastExists)
             const Center(child: Text("No forecast available")),
-          if (!loading && forecastExists)
+          if (!loading &&
+              forecastExists &&
+              screenHeight > minHeightForNextHourForecast)
             Column(
               children: [
                 getNextHourForecast(),
