@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../location/location_provider.dart';
 import 'forecast_card.dart';
@@ -45,6 +46,13 @@ class _ForecastPageState extends State<ForecastPage> {
           if (loading) const Center(child: CircularProgressIndicator()),
           if (!loading && !forecastExists)
             const Center(child: Text("No forecast available")),
+          if (!loading && forecastExists)
+            Column(
+              children: [
+                getNextHourForecast(),
+                Divider(indent: leftPadding, endIndent: leftPadding),
+              ],
+            ),
           if (!loading && forecastExists)
             // without Expanded user cannot scroll and gets an overflow at the bottom
             Expanded(
@@ -97,5 +105,66 @@ class _ForecastPageState extends State<ForecastPage> {
       );
     }
     return result;
+  }
+
+  Widget getNextHourForecast() {
+    final weather = widget.forecastProvider.hourlyForecast.first;
+    final fullDateFormatter = DateFormat(
+      'E dd-MMM HH:mm',
+      Localizations.localeOf(context).toString(),
+    );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            SizedBox(width: leftPadding),
+            Text(
+              "Forecast for ${fullDateFormatter.format(weather.localTime)}",
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+            Text(" (local time)", style: const TextStyle(fontSize: 15)),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            SizedBox(width: leftPadding + 4),
+            Icon(weather.weatherIcon, size: 40),
+            // a VerticalDivider is not displayed inside a Row unless it is wrapped in a Container
+            // or SizedBox (see https://chatgpt.com/share/69c98599-d3bc-8331-85b8-c83de3a70b84)
+            SizedBox(
+              height: 70,
+              child: VerticalDivider(width: 23, thickness: 1),
+            ),
+            getNextHourWeatherDetails(),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget getNextHourWeatherDetails() {
+    final weather = widget.forecastProvider.hourlyForecast.first;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (weather.temp != null) Text("temp.: ${weather.temp}°C"),
+        if (weather.cloudCover != null) Text("clouds: ${weather.cloudCover}%"),
+        Row(
+          children: [
+            Text("wind:"),
+            Text(
+              weather.windSpeed != null
+                  ? " ${weather.windSpeed!.toStringAsFixed(0)}km/h"
+                  : "",
+            ),
+            weather.windDirectionIcon,
+          ],
+        ),
+      ],
+    );
   }
 }
