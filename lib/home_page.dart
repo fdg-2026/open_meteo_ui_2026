@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Open Meteo UI 2026"),
       ),
-      body: screens[_currentTab],
+      body: SafeArea(child: screens[_currentTab]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentTab,
