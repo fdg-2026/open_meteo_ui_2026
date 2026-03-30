@@ -7,6 +7,7 @@ import '../astro/astro_provider.dart';
 import '../location/location_provider.dart';
 import 'forecast_card.dart';
 import 'forecast_provider.dart';
+import 'vertical_divider_in_row.dart';
 
 class ForecastPage extends StatefulWidget {
   const ForecastPage({
@@ -144,15 +145,9 @@ class _ForecastPageState extends State<ForecastPage> {
             Icon(weather.weatherIcon, size: 40),
             // a VerticalDivider is not displayed inside a Row unless it is wrapped in a Container
             // or SizedBox (see https://chatgpt.com/share/69c98599-d3bc-8331-85b8-c83de3a70b84)
-            SizedBox(
-              height: 70,
-              child: VerticalDivider(width: 23, thickness: 1),
-            ),
+            VerticalDividerInRow(height: 70),
             getNextHourWeatherDetails(),
-            SizedBox(
-              height: 70,
-              child: VerticalDivider(width: 23, thickness: 1),
-            ),
+            VerticalDividerInRow(height: 70),
             AstroWidget(),
           ],
         ),
