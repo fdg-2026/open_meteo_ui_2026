@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:open_meteo_ui_2026/forecast/forecast_provider.dart';
 
+import 'astro/astro_provider.dart';
 import 'home_page.dart';
 import 'location/location_provider.dart';
 
@@ -9,6 +11,9 @@ void main() async {
   //_locationProvider.selectLocation("invalid");
   _forecastProvider = ForecastProvider(_locationProvider);
   await _forecastProvider.fetchHourlyForecast();
+  var astroProvider = AstroProvider(_locationProvider);
+  await astroProvider.updateTimes();
+  GetIt.instance.registerSingleton<AstroProvider>(astroProvider);
   runApp(const MyApp());
 }
 
