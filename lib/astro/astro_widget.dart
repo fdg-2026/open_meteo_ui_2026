@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:moon_phase/moon_widget.dart';
-import 'astro_provider.dart';
+import '../main.dart';
 
 class AstroWidget extends StatelessWidget {
-  const AstroWidget({super.key, required this.astroProvider});
+  AstroWidget({super.key});
 
-  final AstroProvider astroProvider;
+  final astroProvider = globalAstroProvider;
   final double arrowSize = 20;
 
   @override

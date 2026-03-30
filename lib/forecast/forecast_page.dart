@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:open_meteo_ui_2026/astro/astro_widget.dart';
 
 import '../location/location_provider.dart';
+import '../main.dart';
 import 'forecast_card.dart';
 import 'forecast_provider.dart';
 
@@ -29,6 +31,7 @@ class _ForecastPageState extends State<ForecastPage> {
     // uncomment next line to simulate long loading
     //await Future.delayed(const Duration(seconds: 2));
     await widget.forecastProvider.fetchHourlyForecast();
+    await globalAstroProvider.updateTimes();
     loading = false;
     setState(() {});
   }
@@ -144,6 +147,11 @@ class _ForecastPageState extends State<ForecastPage> {
               child: VerticalDivider(width: 23, thickness: 1),
             ),
             getNextHourWeatherDetails(),
+            SizedBox(
+              height: 70,
+              child: VerticalDivider(width: 23, thickness: 1),
+            ),
+            AstroWidget(),
           ],
         ),
       ],
