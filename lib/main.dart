@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:open_meteo_ui_2026/forecast/forecast_provider.dart';
 
+import 'astro/astro_provider.dart';
 import 'home_page.dart';
 import 'location/location_provider.dart';
 
@@ -9,11 +10,14 @@ void main() async {
   //_locationProvider.selectLocation("invalid");
   _forecastProvider = ForecastProvider(_locationProvider);
   await _forecastProvider.fetchHourlyForecast();
+  _astroProvider = AstroProvider(_locationProvider);
+  await _astroProvider.updateTimes();
   runApp(const MyApp());
 }
 
 late LocationProvider _locationProvider;
 late ForecastProvider _forecastProvider;
+late AstroProvider _astroProvider;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(
         locationProvider: _locationProvider,
         forecastProvider: _forecastProvider,
+        astroProvider: _astroProvider,
       ),
     );
   }

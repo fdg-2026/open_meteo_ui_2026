@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'astro/astro_provider.dart';
 import 'forecast/forecast_page.dart';
 import 'forecast/forecast_provider.dart';
 import 'location/location_provider.dart';
@@ -9,10 +9,12 @@ class HomePage extends StatefulWidget {
     super.key,
     required this.locationProvider,
     required this.forecastProvider,
+    required this.astroProvider,
   });
 
   final LocationProvider locationProvider;
   final ForecastProvider forecastProvider;
+  final AstroProvider astroProvider;
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
       ForecastPage(
         locationProvider: widget.locationProvider,
         forecastProvider: widget.forecastProvider,
+        astroProvider: widget.astroProvider,
       ),
       const Center(child: Text("radar page")),
     ];
