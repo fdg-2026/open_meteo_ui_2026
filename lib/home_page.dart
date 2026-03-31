@@ -33,8 +33,16 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text("Open Meteo UI 2026"),
+        leading: Padding(
+          padding: const EdgeInsets.all(6.0),
+          child: Image.asset('assets/images/flutter_logo.png'),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(height: 1, thickness: 1),
+        ),
       ),
       body: SafeArea(child: screens[_currentTab]),
       bottomNavigationBar: BottomNavigationBar(
