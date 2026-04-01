@@ -32,6 +32,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         appBarTheme: AppBarTheme(centerTitle: true),
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark,
+        ),
+      ),
+      themeMode: ThemeMode.dark,
       home: HomePage(
         locationProvider: _locationProvider,
         forecastProvider: _forecastProvider,
