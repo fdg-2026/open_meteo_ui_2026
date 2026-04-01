@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'forecast/forecast_page.dart';
 import 'forecast/forecast_provider.dart';
 import 'location/location_provider.dart';
+import 'settings/settings_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -39,6 +40,18 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.all(6.0),
           child: Image.asset('assets/images/flutter_logo.png'),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SettingsPage()),
+              );
+            },
+            icon: Icon(Icons.settings),
+          ),
+        ],
+
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Divider(height: 1, thickness: 1),
