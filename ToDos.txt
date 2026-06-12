@@ -1,1 +1,2 @@
 - fill README.md
+- weather icon: E96A wäre besser als E967 für code 1 = Mainly clear
