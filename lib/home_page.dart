@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'forecast/forecast_page.dart';
 import 'forecast/forecast_provider.dart';
 import 'location/location_provider.dart';
+import 'radar/radar_page.dart';
 import 'settings/settings_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +21,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentTab = 0;
+  int _currentTab = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         locationProvider: widget.locationProvider,
         forecastProvider: widget.forecastProvider,
       ),
-      const Center(child: Text("radar page")),
+      RadarPage(locationProvider: widget.locationProvider),
     ];
 
     return Scaffold(
