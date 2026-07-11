@@ -1,16 +1,9 @@
 # open_meteo_ui_2026
 
-A new Flutter project.
+This project was created during a Flutter training in 2026 for students of [FDG](https://fdg-ab.de/).
 
-## Getting Started
+We used [Open-Meteo](https://open-meteo.com/) and [RainViewer](https://www.rainviewer.com/) to create a weather forecast app without any ads. We appreciate that both offer their basic services free of charge.
 
-This project is a starting point for a Flutter application.
+But we regret that RainViewer has drastically reduced its free API beginning of 2026 by enforcing strict rate limits of 100 requests per minute per IP and no longer supporting zoom level > 7. With these restrictions our slide show of the rain radar for the last two hours no longer works as it did before.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+You can start the web app of this project under https://fdg-2026.github.io/web/open_meteo_ui_2026/.

@@ -28,7 +28,7 @@ class WeatherData {
       return const IconData(0xE96D, fontFamily: 'EasyWeatherIcons');
     }
     if (weatherCode == 1) {
-      return const IconData(0xE967, fontFamily: 'EasyWeatherIcons');
+      return const IconData(0xE96A, fontFamily: 'EasyWeatherIcons');
     }
     if (weatherCode == 2) {
       return const IconData(0xE961, fontFamily: 'EasyWeatherIcons');
