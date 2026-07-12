@@ -66,6 +66,42 @@ class _RadarPageState extends State<RadarPage> {
             ),
           ),
         ),
+
+        // some buttons to center the map or rotate it to north
+        Container(
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: greyBackground,
+            borderRadius: BorderRadius.circular(6), // Rounded corners
+          ),
+
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: Icon(Icons.center_focus_strong),
+                tooltip: "center to selected location",
+                onPressed: () {
+                  setState(() {
+                    mapController.move(
+                      currentSelectedLatLng,
+                      mapController.camera.zoom,
+                    );
+                  });
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.navigation),
+                tooltip: "rotate so that north is on top",
+                onPressed: () {
+                  setState(() {
+                    mapController.rotate(0);
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
