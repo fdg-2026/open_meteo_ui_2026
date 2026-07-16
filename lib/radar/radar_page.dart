@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import '../location/location_provider.dart';
 
@@ -14,6 +16,35 @@ class RadarPage extends StatefulWidget {
 
 class _RadarPageState extends State<RadarPage> {
   final MapController mapController = MapController();
+  String rainTileUrl = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getRainTileUrl();
+  }
+
+  Future<void> getRainTileUrl() async {
+    rainTileUrl = "";
+    try {
+      final response = await http.get(
+        Uri.parse('https://api.rainviewer.com/public/weather-maps.json'),
+      );
+      if (response.statusCode != 200) {
+        debugPrint("statusCode from rainviewer api was ${response.statusCode}");
+        return;
+      }
+      final data = json.decode(response.body);
+      // Get the most recent 'past' radar frame
+      setState(() {
+        final String host = data['host'];
+        rainTileUrl = host + data['radar']['past'].last['path'];
+        //debugPrint("rainTileUrl is $rainTileUrl");
+      });
+    } on Exception catch (e) {
+      debugPrint("Exception in getRainTileUrl: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +70,15 @@ class _RadarPageState extends State<RadarPage> {
           userAgentPackageName: 'de.julig.open_meteo_ui_2026',
         ),
 
+        // Radar Overlay Layer (only if TileUrl is available)
+        if (rainTileUrl.isNotEmpty)
+          Opacity(
+            opacity: 0.5,
+            child: TileLayer(
+              // The URL template includes placeholders for zoom (z), x, and y coordinates
+              urlTemplate: '$rainTileUrl/512/{z}/{x}/{y}/2/1_1.png',
+            ),
+          ),
         // Marker layer
         MarkerLayer(
           markers: [
