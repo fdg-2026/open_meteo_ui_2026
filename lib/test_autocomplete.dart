@@ -14,9 +14,14 @@ class MainApp extends StatelessWidget {
 }
 
 // the following code was taken from https://chatgpt.com/share/6994778f-19f8-8003-9fd8-290c0d0709b4
+// I did the following minor changes:
+// - make c-tor for class CustomAutocompleteExample const to avoid warning
+// - added some options to test scrolling
+// - commented some lines in ListView.builder which seem to be not needed
+// - added asimple ListView in comment as alternative to ListView.builder
 
 class CustomAutocompleteExample extends StatelessWidget {
-  CustomAutocompleteExample({super.key});
+  const CustomAutocompleteExample({super.key});
 
   final List<String> _options = const [
     'Apple',
@@ -28,6 +33,17 @@ class CustomAutocompleteExample extends StatelessWidget {
     'Orange',
     'Peach',
     'Strawberry',
+    'Test01',
+    'Test02',
+    'Test03',
+    'Test04',
+    'Test05',
+    'Test06',
+    'Test07',
+    'Test08',
+    'Test09',
+    'Test10',
+    'Test11',
   ];
 
   @override
@@ -80,8 +96,8 @@ class CustomAutocompleteExample extends StatelessWidget {
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxHeight: 200),
                   child: ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
+                    //padding: EdgeInsets.zero,
+                    //shrinkWrap: true,
                     itemCount: options.length,
                     itemBuilder: (context, index) {
                       final option = options.elementAt(index);
@@ -91,6 +107,15 @@ class CustomAutocompleteExample extends StatelessWidget {
                       );
                     },
                   ),
+                  // child: ListView(
+                  //   children: [
+                  //     for (var option in options)
+                  //       _SuggestionTile(
+                  //         text: option,
+                  //         onTap: () => onSelected(option),
+                  //       ),
+                  //   ],
+                  // ),
                 ),
               ),
             );
