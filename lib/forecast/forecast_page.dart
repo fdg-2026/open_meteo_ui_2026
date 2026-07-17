@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:open_meteo_ui_2026/astro/astro_widget.dart';
 
 import '../astro/astro_provider.dart';
+import '../location/location_page.dart';
 import '../location/location_provider.dart';
 import 'forecast_card.dart';
 import 'forecast_provider.dart';
@@ -95,8 +96,19 @@ class _ForecastPageState extends State<ForecastPage> {
           items: getLocationDropDownItems(),
           onChanged: (value) async {
             if (value != null) {
-              widget.locationProvider.selectLocation(value);
-              refresh();
+              if (value.endsWith("...")) {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        LocationPage(locationProvider: widget.locationProvider),
+                  ),
+                );
+                refresh();
+              } else {
+                widget.locationProvider.selectLocation(value);
+                refresh();
+              }
             }
           },
         ),
@@ -107,6 +119,7 @@ class _ForecastPageState extends State<ForecastPage> {
   List<DropdownMenuItem<String>> getLocationDropDownItems() {
     List<DropdownMenuItem<String>> result = [];
     List<String> names = widget.locationProvider.getLocationNames();
+    names.add("your locations...");
     for (var name in names) {
       result.add(
         DropdownMenuItem<String>(

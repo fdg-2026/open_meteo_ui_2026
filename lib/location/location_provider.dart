@@ -54,4 +54,9 @@ class LocationProvider {
 
     return _locations.map((data) => data.name).toList();
   }
+
+  void addLocation(LocationData location) {
+    _locations.add(location);
+    _selectedLocationName = location.name;
+  }
 }
