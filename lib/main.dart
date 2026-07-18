@@ -10,7 +10,7 @@ import 'settings/settings_provider.dart';
 
 void main() async {
   _locationProvider = LocationProvider();
-  //_locationProvider.selectLocation("invalid");
+  _locationProvider.initialize();
   _forecastProvider = ForecastProvider(_locationProvider);
   await _forecastProvider.fetchHourlyForecast();
   var astroProvider = AstroProvider(_locationProvider);

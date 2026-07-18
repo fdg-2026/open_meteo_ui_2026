@@ -12,22 +12,6 @@ class LocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage> {
-  final List<LocationData> _testLocations = [
-    LocationData(name: "Berlin", latitude: 10, longitude: 11),
-    LocationData(name: "London", latitude: 20, longitude: 22),
-    LocationData(name: "Madrid", latitude: 30, longitude: 33),
-    LocationData(name: "Rome", latitude: 40, longitude: 44),
-    LocationData(name: "Test01", latitude: 89, longitude: 1),
-    LocationData(name: "Test02", latitude: 89, longitude: 2),
-    LocationData(name: "Test03", latitude: 89, longitude: 3),
-    LocationData(name: "Test04", latitude: 89, longitude: 4),
-    LocationData(name: "Test05", latitude: 89, longitude: 5),
-    LocationData(name: "Test06", latitude: 89, longitude: 6),
-    LocationData(name: "Test07", latitude: 89, longitude: 7),
-    LocationData(name: "Test08", latitude: 89, longitude: 8),
-    LocationData(name: "Test09", latitude: 89, longitude: 9),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,15 +34,14 @@ class _LocationPageState extends State<LocationPage> {
               focusNode: FocusNode(),
 
               // 1️⃣ Filter logic
-              optionsBuilder: (TextEditingValue textEditingValue) {
+              optionsBuilder: (TextEditingValue textEditingValue) async {
                 if (textEditingValue.text.isEmpty) {
                   return const Iterable<LocationData>.empty();
                 }
-                return _testLocations.where(
-                  (location) => location.name.toLowerCase().contains(
-                    textEditingValue.text.toLowerCase(),
-                  ),
+                var result = await widget.locationProvider.getLocationProposals(
+                  textEditingValue.text,
                 );
+                return result;
               },
 
               // 2️⃣ What happens when user selects an option
@@ -96,7 +79,7 @@ class _LocationPageState extends State<LocationPage> {
                   elevation: 6,
                   borderRadius: BorderRadius.circular(8),
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxHeight: 200),
+                    constraints: const BoxConstraints(maxHeight: 350),
                     child: ListView.separated(
                       //padding: EdgeInsets.zero,
                       //shrinkWrap: true,
@@ -139,11 +122,14 @@ class _LocationPageState extends State<LocationPage> {
           location.name,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
+        subtitle: Text(location.details),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text("lat:${location.latitude.toStringAsFixed(3)}"),
             Text("lon:${location.longitude.toStringAsFixed(3)}"),
+            Text(location.timezone),
           ],
         ),
       ),
