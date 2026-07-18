@@ -51,6 +51,16 @@ class LocationProvider {
     return _locations.map((data) => data.name).toList();
   }
 
+  bool nameExists(String name) {
+    var result = false;
+    for (var location in _locations) {
+      if (location.name == name) {
+        return true;
+      }
+    }
+    return result;
+  }
+
   void addLocation(LocationData location) {
     _locations.add(location);
     _selectedLocationName = location.name;

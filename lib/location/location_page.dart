@@ -12,6 +12,22 @@ class LocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage> {
+  void addLocation(LocationData location) {
+    if (widget.locationProvider.nameExists(location.name)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.redAccent.shade200,
+          content: Text(
+            'There is already a location with name ${location.name}.',
+          ),
+        ),
+      );
+    } else {
+      widget.locationProvider.addLocation(location);
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +62,7 @@ class _LocationPageState extends State<LocationPage> {
 
               // 2️⃣ What happens when user selects an option
               onSelected: (LocationData selection) {
-                widget.locationProvider.addLocation(selection);
-                Navigator.pop(context);
+                addLocation(selection);
               },
 
               // Next line is needed when you use your own type in RawAutocomplete instead of String.
