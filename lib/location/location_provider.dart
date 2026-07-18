@@ -1,6 +1,8 @@
 import 'dart:collection';
 import 'dart:developer' as developer;
 import 'dart:convert';
+import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'location_data.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,6 +16,7 @@ class LocationProvider {
     for (var location in _locations) {
       if (location.name == name) {
         _selectedLocationName = location.name;
+        saveLocations();
         return true;
       }
     }
@@ -62,8 +65,13 @@ class LocationProvider {
   }
 
   void addLocation(LocationData location) {
-    _locations.add(location);
-    _selectedLocationName = location.name;
+    if (location.name.isNotEmpty && !nameExists(location.name)) {
+      _locations.add(location);
+      _selectedLocationName = location.name;
+      saveLocations();
+    } else {
+      throw ("addLocation: name ${location.name} is already used or not allowed");
+    }
   }
 
   void deleteLocation(String name) {
@@ -76,6 +84,7 @@ class LocationProvider {
     }
     if (toBeDeletedLocation != null) {
       _locations.remove(toBeDeletedLocation);
+      saveLocations();
     }
   }
 
@@ -94,8 +103,56 @@ class LocationProvider {
     defaultLocation.admin3 = "Kreisfreie Stadt Aschaffenburg";
     defaultLocation.featureCode = "PPL"; // populated place
     defaultLocation.timezone = "Europe/Berlin";
-    _locations.add(defaultLocation);
-    _selectedLocationName = defaultLocation.name;
+
+    loadLocations();
+
+    if (_locations.isEmpty) {
+      _locations.add(defaultLocation);
+      _selectedLocationName = defaultLocation.name;
+    }
+  }
+
+  void loadLocations() {
+    _locations.clear();
+    var sharedPrefsInstance = GetIt.instance<SharedPreferences>();
+    var storedLocations = sharedPrefsInstance.getString("locations");
+    if (storedLocations != null) {
+      var storedList = jsonDecode(storedLocations);
+      if (storedList is List<dynamic>) {
+        for (var data in storedList) {
+          if (data is Map<String, dynamic> && LocationData.isValidMap(data)) {
+            var location = LocationData.fromMap(data);
+            if (!nameExists(location.name)) {
+              _locations.add(LocationData.fromMap(data));
+            }
+          }
+        }
+      }
+    }
+    String? nameToTest = sharedPrefsInstance.getString("selectedLocationName");
+    if (nameToTest != null && nameExists(nameToTest)) {
+      _selectedLocationName = nameToTest;
+    } else {
+      // something is corrupt, start from scratch
+      _selectedLocationName = "";
+      _locations.clear();
+    }
+  }
+
+  void saveLocations() {
+    // next line only works when LocationData has a method called "toJson"
+    //var encoded = jsonEncode(_locations);
+    List<dynamic> mapList = [];
+    for (var location in _locations) {
+      mapList.add(location.toMap());
+    }
+    var encoded = jsonEncode(mapList);
+    var sharedPrefsInstance = GetIt.instance<SharedPreferences>();
+    sharedPrefsInstance.setString("locations", encoded);
+    sharedPrefsInstance.setString(
+      "selectedLocationName",
+      _selectedLocationName,
+    );
   }
 
   // BTW: the geocoding api of open-meteo is quite strict, e.g. it does not know Grossostheim, only Großostheim

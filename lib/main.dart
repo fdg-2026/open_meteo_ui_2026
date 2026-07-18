@@ -9,6 +9,11 @@ import 'location/location_provider.dart';
 import 'settings/settings_provider.dart';
 
 void main() async {
+  // without next line you get on Android the error "FlutterError (Binding has not yet been initialized ...)"
+  WidgetsFlutterBinding.ensureInitialized();
+  var sharedPrefsInstance = await SharedPreferences.getInstance();
+  GetIt.instance.registerSingleton<SharedPreferences>(sharedPrefsInstance);
+
   _locationProvider = LocationProvider();
   _locationProvider.initialize();
   _forecastProvider = ForecastProvider(_locationProvider);
@@ -16,11 +21,6 @@ void main() async {
   var astroProvider = AstroProvider(_locationProvider);
   await astroProvider.updateTimes();
   GetIt.instance.registerSingleton<AstroProvider>(astroProvider);
-
-  // without next line you get on Android the error "FlutterError (Binding has not yet been initialized ...)"
-  WidgetsFlutterBinding.ensureInitialized();
-  var sharedPrefsInstance = await SharedPreferences.getInstance();
-  GetIt.instance.registerSingleton<SharedPreferences>(sharedPrefsInstance);
 
   runApp(const MyApp());
 }
