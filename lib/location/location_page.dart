@@ -28,6 +28,17 @@ class _LocationPageState extends State<LocationPage> {
     }
   }
 
+  void deleteLocation(LocationData location) {
+    widget.locationProvider.deleteLocation(location.name);
+    // refresh the UI so that the deleted location is no longer displayed in the list of locations to be selected or deleted
+    setState(() {});
+  }
+
+  void selectLocation(LocationData location) {
+    widget.locationProvider.selectLocation(location.name);
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,6 +128,30 @@ class _LocationPageState extends State<LocationPage> {
                 );
               },
             ),
+
+            const SizedBox(height: 20),
+            Divider(),
+            const SizedBox(height: 20),
+            Text(
+              "Select or delete an existing location:",
+              style: TextStyle(fontSize: 20),
+            ),
+
+            Expanded(
+              child: ListView(
+                children: widget.locationProvider.locations
+                    .map(
+                      (LocationData location) =>
+                          getSelectOrDeleteLocationTile(location),
+                    )
+                    .toList(),
+                // same with a for loop:
+                // children: [
+                //   for (var location in widget.locationProvider.locations)
+                //     getSelectOrDeleteLocationTile(location),
+                // ],
+              ),
+            ),
           ],
         ),
       ),
@@ -147,6 +182,41 @@ class _LocationPageState extends State<LocationPage> {
             Text(location.timezone),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget getSelectOrDeleteLocationTile(LocationData location) {
+    Widget trailing = SizedBox(width: 10);
+    bool isSelectedLocation =
+        location.name == widget.locationProvider.selectedLocation.name;
+    if (!isSelectedLocation) {
+      trailing = IconButton(
+        onPressed: () {
+          deleteLocation(location);
+        },
+        icon: Icon(Icons.delete),
+      );
+    }
+    return Card(
+      elevation: 4, // shadow depth
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      child: ListTile(
+        title: Text(
+          location.name,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(location.details),
+        leading: Checkbox(
+          value: isSelectedLocation,
+          onChanged: isSelectedLocation
+              ? null
+              : (value) {
+                  selectLocation(location);
+                },
+        ),
+        trailing: trailing,
+        dense: true,
       ),
     );
   }

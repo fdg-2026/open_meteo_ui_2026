@@ -66,6 +66,19 @@ class LocationProvider {
     _selectedLocationName = location.name;
   }
 
+  void deleteLocation(String name) {
+    LocationData? toBeDeletedLocation;
+    for (var location in _locations) {
+      if (location.name == name) {
+        toBeDeletedLocation = location;
+        break;
+      }
+    }
+    if (toBeDeletedLocation != null) {
+      _locations.remove(toBeDeletedLocation);
+    }
+  }
+
   void initialize() {
     var defaultLocation = LocationData(
       name: "Aschaffenburg",
