@@ -39,7 +39,8 @@ class _HomePageState extends State<HomePage> {
         title: Text("Open Meteo UI 2026"),
         leading: Padding(
           padding: const EdgeInsets.all(6.0),
-          child: Image.asset('assets/images/flutter_logo.png'),
+          //child: Image.asset('assets/images/flutter_logo.png'),
+          child: Image.asset('assets/images/app_icon.png'),
         ),
         actions: [
           IconButton(

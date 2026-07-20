@@ -64,6 +64,7 @@ class _MyAppState extends State<MyApp> {
           seedColor: Colors.blue,
           brightness: Brightness.dark,
         ),
+        appBarTheme: AppBarTheme(centerTitle: true),
       ),
       themeMode: settingsProvider.settings.themeMode,
       home: HomePage(
