@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
-import 'package:lat_lng_to_timezone/lat_lng_to_timezone.dart';
+//import 'package:lat_lng_to_timezone/lat_lng_to_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import '../location/location_provider.dart';
@@ -66,7 +66,8 @@ class ForecastProvider {
     windDirections = List<int?>.from(data['hourly']['wind_direction_10m']);
     pressures = List<double?>.from(data['hourly']['surface_pressure']);
 
-    var timezoneName = latLngToTimezoneString(lat, lon);
+    //var timezoneName = latLngToTimezoneString(lat, lon);
+    var timezoneName = _locationProvider.selectedLocation.timezone;
     final tzLocation = tz.getLocation(timezoneName);
     final nowInUtc = DateTime.now().toUtc();
 

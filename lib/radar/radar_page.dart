@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
-import 'package:lat_lng_to_timezone/lat_lng_to_timezone.dart';
+//import 'package:lat_lng_to_timezone/lat_lng_to_timezone.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../location/location_provider.dart';
@@ -81,11 +81,12 @@ class _RadarPageState extends State<RadarPage> {
       tileUrls.add(host + entry['path']);
     }
 
-    var location = widget.locationProvider.selectedLocation;
-    var timeZoneName = latLngToTimezoneString(
-      location.latitude,
-      location.longitude,
-    );
+    // var location = widget.locationProvider.selectedLocation;
+    // var timeZoneName = latLngToTimezoneString(
+    //   location.latitude,
+    //   location.longitude,
+    // );
+    var timeZoneName = widget.locationProvider.selectedLocation.timezone;
     var tzLocation = tz.getLocation(timeZoneName);
 
     tileTimes.clear();

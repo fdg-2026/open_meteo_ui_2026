@@ -1,4 +1,4 @@
 ✅ fill README.md
 ✅ weather icon: E96A wäre besser als E967 für code 1 = Mainly clear
 - test usage of package "weather_icons_animated" (needs Dart SDK >= 3.11.4, and we have 3.11.3)
-- use new timezone property in LocationData instead of calculating it from lat/lon via latLngToTimezoneString
+✅ use new timezone property in LocationData instead of calculating it from lat/lon via latLngToTimezoneString
