@@ -7,3 +7,6 @@ We used [Open-Meteo](https://open-meteo.com/) and [RainViewer](https://www.rainv
 But we regret that RainViewer has drastically reduced its free API beginning of 2026 by enforcing strict rate limits of 100 requests per minute per IP and no longer supporting zoom level > 7. With these restrictions our slide show of the rain radar for the last two hours no longer works as it did before.
 
 You can start the web app of this project under https://fdg-2026.github.io/web/open_meteo_ui_2026/.
+
+Attribution:</br>
+the launcher icon of this app was copied from <a href="https://www.flaticon.com/free-icons/weather-app" title="weather app icons">Weather app icons created by Andrean Prabowo - Flaticon</a> 

@@ -54,6 +54,20 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.4
+
+# Configure the icon generation details
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false # Set to true if you want iOS support later
+  image_path: "assets/images/app_icon.png"
+  
+  # Web Configuration
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    background_color: "#ffffff"  # Used for the PWA splash background
+    theme_color: "#02569B"       # Used for the browser address bar color
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
