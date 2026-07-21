@@ -31,7 +31,7 @@ class SettingsData {
   factory SettingsData.fromJson(Map<String, dynamic> json) {
     var result = SettingsData();
     if (json["useDarkTheme"] != null && json["useDarkTheme"] is bool) {
-      result._useDarkTheme = json["themeModeAsString"];
+      result._useDarkTheme = json["useDarkTheme"];
     }
     return result;
   }
