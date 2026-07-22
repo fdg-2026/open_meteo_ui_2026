@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:intl/intl.dart';
+import '../version_info.dart';
 import 'settings_provider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -16,6 +18,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final versionDateFormatter = DateFormat(
+      'dd-MMM-yyyy',
+      Localizations.localeOf(context).toString(),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Settings"),
@@ -58,6 +65,15 @@ class _SettingsPageState extends State<SettingsPage> {
                     value: true,
                   ),
                 ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Divider(),
+            Padding(
+              padding: headerPadding,
+              child: Text(
+                "This is version $versionTag from ${versionDateFormatter.format(versionDate)}.",
+                style: textStyle,
               ),
             ),
           ],
