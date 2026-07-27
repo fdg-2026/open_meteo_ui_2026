@@ -73,10 +73,16 @@ class _RadarPageState extends State<RadarPage> {
         // Radar Overlay Layer (only if TileUrl is available)
         if (rainTileUrl.isNotEmpty)
           Opacity(
-            opacity: 0.5,
+            opacity: 0.9,
             child: TileLayer(
               // The URL template includes placeholders for zoom (z), x, and y coordinates
-              urlTemplate: '$rainTileUrl/512/{z}/{x}/{y}/2/1_1.png',
+              //urlTemplate: '$rainTileUrl/512/{z}/{x}/{y}/2/1_1.png',
+              urlTemplate:
+                  //'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=7089b9e7a29803a85fdf9eeb78e35294',
+                  //'https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=7089b9e7a29803a85fdf9eeb78e35294',
+                  'https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=7089b9e7a29803a85fdf9eeb78e35294',
+
+              //'https://maps.openweathermap.org/maps/2.0/weather/1h/PARAIN/{z}/{x}/{y}?date=1618898990&appid=f858c296f501d405d29a6e49c3b94ed3 ',
             ),
           ),
         // Marker layer
