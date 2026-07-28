@@ -22,9 +22,26 @@ class SettingsData {
     return result;
   }
 
+  String? _localeAsString;
+  String? get localeAsString => _localeAsString;
+  set localeAsString(String? value) {
+    if (value != _localeAsString) {
+      _localeAsString = value;
+      isDirty = true;
+    }
+  }
+
+  Locale? get locale {
+    Locale? result;
+    if (localeAsString != null) {
+      result = Locale(localeAsString!);
+    }
+    return result;
+  }
+
   // Object -> Map
   Map<String, dynamic> toJson() {
-    return {"useDarkTheme": useDarkTheme};
+    return {"useDarkTheme": useDarkTheme, "localeAsString": localeAsString};
   }
 
   // Map -> Object
@@ -32,6 +49,9 @@ class SettingsData {
     var result = SettingsData();
     if (json["useDarkTheme"] != null && json["useDarkTheme"] is bool) {
       result._useDarkTheme = json["useDarkTheme"];
+    }
+    if (json["localeAsString"] != null) {
+      result._localeAsString = json["localeAsString"];
     }
     return result;
   }

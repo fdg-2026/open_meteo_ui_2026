@@ -72,8 +72,9 @@ class _MyAppState extends State<MyApp> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       // when you do not set locale here, the system's locale is used.
-      locale: Locale("de"),
+      //locale: Locale("de"),
       //locale: Locale("en"),
+      locale: settingsProvider.settings.locale,
       home: HomePage(
         locationProvider: _locationProvider,
         forecastProvider: _forecastProvider,

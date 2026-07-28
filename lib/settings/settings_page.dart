@@ -68,6 +68,42 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             SizedBox(height: 20),
+            Padding(
+              padding: headerPadding,
+              child: Text(
+                "Which language to use in this app?",
+                style: textStyle,
+              ),
+            ),
+            RadioGroup<String?>(
+              groupValue:
+                  settingsProvider.settings.localeAsString, // Zentral gesteuert
+              onChanged: (String? value) {
+                setState(() {
+                  settingsProvider.settings.localeAsString = value;
+                  settingsProvider.saveSettings();
+                });
+              },
+              child: Column(
+                children: [
+                  RadioListTile<String?>(
+                    title: Text("same as defined in System", style: textStyle),
+                    value: null,
+                  ),
+                  RadioListTile<String?>(
+                    // for a discussion how to display flags see https://gemini.google.com/share/7ba4786e1e32
+                    // there might be an issue with Windows, but we only target Web and Android.
+                    title: Text("🇬🇧 always English", style: textStyle),
+                    value: "en",
+                  ),
+                  RadioListTile<String?>(
+                    title: Text("🇩🇪 always German", style: textStyle),
+                    value: "de",
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
             Divider(),
             Padding(
               padding: headerPadding,
