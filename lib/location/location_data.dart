@@ -45,8 +45,7 @@ class LocationData {
         timezone != null &&
         data["latitude"] is double &&
         data["longitude"] is double) {
-      result =
-          name.length > 1 && timezone.isNotEmpty && featureCode.startsWith("P");
+      result = name.length > 1 && timezone.isNotEmpty;
     }
     return result;
   }
