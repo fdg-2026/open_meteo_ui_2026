@@ -1,0 +1,7 @@
+{
+    "@@locale": "de",
+    "appTitle": "Mein Test mit Localization",
+    "welcomeUser": "Hallo {userName}!",
+    "fp_weatherIn": "Wetter in:",
+    "fp_forecastFor": "Vorhersage für"
+}

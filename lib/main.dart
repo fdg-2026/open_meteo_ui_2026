@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'astro/astro_provider.dart';
 import 'home_page.dart';
+import 'l10n/app_localizations.dart';
 import 'location/location_provider.dart';
 import 'settings/settings_provider.dart';
 
@@ -67,6 +68,12 @@ class _MyAppState extends State<MyApp> {
         appBarTheme: AppBarTheme(centerTitle: true),
       ),
       themeMode: settingsProvider.settings.themeMode,
+      // Configure localization delegates and supported locales
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      // when you do not set locale here, the system's locale is used.
+      locale: Locale("de"),
+      //locale: Locale("en"),
       home: HomePage(
         locationProvider: _locationProvider,
         forecastProvider: _forecastProvider,

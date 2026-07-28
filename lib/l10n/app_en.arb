@@ -1,0 +1,15 @@
+{
+    "@@locale": "en",
+    "appTitle": "My Localized App",
+    "welcomeUser": "Hello {userName}!",
+    "@welcomeUser": {
+        "description": "Welcome message with parameter",
+        "placeholders": {
+            "userName": {
+                "type": "String" 
+            }
+        }
+    },
+    "fp_weatherIn": "Weather in:",
+    "fp_forecastFor": "Forecast for"
+}

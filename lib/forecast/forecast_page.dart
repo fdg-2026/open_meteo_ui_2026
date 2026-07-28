@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:open_meteo_ui_2026/astro/astro_widget.dart';
 
 import '../astro/astro_provider.dart';
+import '../l10n/app_localizations.dart';
 import '../location/location_page.dart';
 import '../location/location_provider.dart';
 import 'forecast_card.dart';
@@ -28,6 +29,11 @@ class _ForecastPageState extends State<ForecastPage> {
   bool loading = false;
   final leftPadding = 16.0;
   final AstroProvider astroProvider = GetIt.instance<AstroProvider>();
+
+  // the hint for using the following getter instead of calling
+  //   var l10n = AppLocalizations.of(context)!;
+  // in each method that uses translated texts was given by Gemini in https://share.gemini.google/toIyNovq2qRu
+  AppLocalizations get l10n => AppLocalizations.of(context)!;
 
   Future<void> refresh() async {
     loading = true;
@@ -88,8 +94,9 @@ class _ForecastPageState extends State<ForecastPage> {
       children: [
         Padding(
           padding: EdgeInsets.only(left: leftPadding),
-          child: Text("Weather in: ", style: TextStyle(fontSize: 18)),
+          child: Text(l10n.fp_weatherIn, style: TextStyle(fontSize: 18)),
         ),
+        SizedBox(width: 10),
         DropdownButton<String>(
           borderRadius: BorderRadius.circular(10),
           value: widget.locationProvider.selectedLocation.name,
@@ -145,7 +152,7 @@ class _ForecastPageState extends State<ForecastPage> {
           children: [
             SizedBox(width: leftPadding),
             Text(
-              "Forecast for ${fullDateFormatter.format(weather.localTime)}",
+              "${l10n.fp_forecastFor} ${fullDateFormatter.format(weather.localTime)}",
               style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
             Text(" (local time)", style: const TextStyle(fontSize: 15)),
