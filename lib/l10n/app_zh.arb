@@ -1,0 +1,50 @@
+{
+    "@@locale": "zh",
+    "appTitle": "我的本地化应用",
+    "welcomeUser": "你好，{userName}！",
+    "@welcomeUser": {
+        "description": "Welcome message with parameter",
+        "placeholders": {
+            "userName": {
+                "type": "String" 
+            }
+        }
+    },
+    "fp_weatherIn": "天气：",
+    "fp_forecastFor": "天气预报：",
+    "fp_localTime": "(当地时间)",
+    "fp_temp": "气温：",
+    "@fp_temp": {
+        "description": "this should be an abbreviation for temperature. It should be as short as the following 2 texts for cloud coverage and wind speed."
+    },
+    "fp_clouds": "云量：",
+    "fp_wind": "风速：",
+    "fp_yourLocations": "您的位置",
+    "fp_noForecastAvailable": "暂无天气预报",
+    "sp_pageTitle": "设置",
+    "sp_themeTitle": "为此应用使用浅色还是深色模式？",
+    "sp_themeSystem": "跟随系统设置",
+    "sp_themeLight": "始终浅色",
+    "sp_themeDark": "始终深色",
+    "sp_localeTitle": "在此应用中使用哪种语言？",
+    "sp_localeSystem": "跟随系统设置",
+    "sp_localeEN": "🇬🇧 英语",
+    "sp_localeDE": "🇩🇪 德语",
+    "sp_localeFR": "🇫🇷 法语",
+    "sp_localeES": "🇪🇸 西班牙语",
+    "sp_localeZH": "🇨🇳 简体中文",
+    "sp_versionInfo": "这是发布于 {date} 的版本 {version}。",
+    "@sp_versionInfo": {
+        "description": "Informs the user which version of this app he has installed.",
+        "placeholders": {
+            "version": {
+                "type": "String" 
+            },
+            "date": {
+                "type": "String" 
+            }
+        }
+    },
+    "hp_forecast": "天气预报",
+    "hp_rainRadar": "降雨雷达"
+}

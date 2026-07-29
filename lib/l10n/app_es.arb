@@ -1,0 +1,50 @@
+{
+    "@@locale": "es",
+    "appTitle": "Mi aplicación localizada",
+    "welcomeUser": "¡Hola, {userName}!",
+    "@welcomeUser": {
+        "description": "Welcome message with parameter",
+        "placeholders": {
+            "userName": {
+                "type": "String" 
+            }
+        }
+    },
+    "fp_weatherIn": "Clima en:",
+    "fp_forecastFor": "Pronóstico para",
+    "fp_localTime": "(hora local)",
+    "fp_temp": "temp.:",
+    "@fp_temp": {
+        "description": "this should be an abbreviation for temperature. It should be as short as the following 2 texts for cloud coverage and wind speed."
+    },
+    "fp_clouds": "nubes:",
+    "fp_wind": "viento:",
+    "fp_yourLocations": "tus ubicaciones",
+    "fp_noForecastAvailable": "no hay pronóstico disponible",
+    "sp_pageTitle": "Ajustes",
+    "sp_themeTitle": "¿Usar modo claro u oscuro para esta aplicación?",
+    "sp_themeSystem": "igual que en el sistema",
+    "sp_themeLight": "siempre claro",
+    "sp_themeDark": "siempre oscuro",
+    "sp_localeTitle": "¿Qué idioma usar en esta aplicación?",
+    "sp_localeSystem": "igual que en el sistema",
+    "sp_localeEN": "🇬🇧 Inglés",
+    "sp_localeDE": "🇩🇪 Alemán",
+    "sp_localeFR": "🇫🇷 Francés",
+    "sp_localeES": "🇪🇸 Español",
+    "sp_localeZH": "🇨🇳 Chino simplificado",
+    "sp_versionInfo": "Esta es la versión {version} del {date}.",
+    "@sp_versionInfo": {
+        "description": "Informs the user which version of this app he has installed.",
+        "placeholders": {
+            "version": {
+                "type": "String" 
+            },
+            "date": {
+                "type": "String" 
+            }
+        }
+    },
+    "hp_forecast": "Pronóstico",
+    "hp_rainRadar": "Radar de lluvia"
+}

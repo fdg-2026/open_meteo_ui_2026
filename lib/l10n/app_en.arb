@@ -28,8 +28,11 @@
     "sp_themeDark": "always dark",
     "sp_localeTitle": "Which language to use in this app?",
     "sp_localeSystem": "same as defined in System",
-    "sp_localeEN": "🇬🇧 always English",
-    "sp_localeDE": "🇩🇪 always German",
+    "sp_localeEN": "🇬🇧 English",
+    "sp_localeDE": "🇩🇪 German",
+    "sp_localeFR": "🇫🇷 French",
+    "sp_localeES": "🇪🇸 Spanish",
+    "sp_localeZH": "🇨🇳 Simplified Chinese",
     "sp_versionInfo": "This is version {version} from {date}.",
     "@sp_versionInfo": {
         "description": "Informs the user which version of this app he has installed.",

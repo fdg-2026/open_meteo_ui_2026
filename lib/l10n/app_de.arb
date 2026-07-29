@@ -4,7 +4,7 @@
     "welcomeUser": "Hallo {userName}!",
     "fp_weatherIn": "Wetter in:",
     "fp_forecastFor": "Vorhersage für",
-    "fp_localTime": "(lokale Zeit)",
+    "fp_localTime": "(Ortszeit)",
     "fp_temp": "Temp.:",
     "fp_clouds": "Wolken:",
     "fp_wind": "Wind:",
@@ -19,6 +19,9 @@
     "sp_localeSystem": "wie im System definiert",
     "sp_localeEN": "🇬🇧 Englisch",
     "sp_localeDE": "🇩🇪 Deutsch",
+    "sp_localeFR": "🇫🇷 Französisch",
+    "sp_localeES": "🇪🇸 Spanisch",
+    "sp_localeZH": "🇨🇳 vereinfachtes Chinesisch",
     "sp_versionInfo": "Dies ist Version {version} vom {date}.",
     "hp_forecast": "Vorhersage",
     "hp_rainRadar": "Regen Radar"
