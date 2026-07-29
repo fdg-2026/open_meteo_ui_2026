@@ -46,3 +46,6 @@ app.*.map.json
 
 # generated files under l10n
 /lib/l10n/*.dart
+
+# file with untranslated texts
+untranslated.txt

@@ -9,7 +9,10 @@ class ForecastCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final weekDayFormatter = DateFormat('E. HH:00');
+    final weekDayFormatter = DateFormat(
+      'E. HH:00',
+      Localizations.localeOf(context).toString(),
+    );
     double normalFontSize = 13;
 
     var screenWidth = MediaQuery.of(context).size.width;

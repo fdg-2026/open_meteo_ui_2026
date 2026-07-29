@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'forecast/forecast_page.dart';
 import 'forecast/forecast_provider.dart';
+import 'l10n/app_localizations.dart';
 import 'location/location_provider.dart';
 import 'radar/radar_page.dart';
 import 'settings/settings_page.dart';
@@ -22,6 +23,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentTab = 0;
+  AppLocalizations get l10n => AppLocalizations.of(context)!;
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +69,12 @@ class _HomePageState extends State<HomePage> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.show_chart_outlined),
-            label: "forecast",
+            label: l10n.hp_forecast,
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.radar), label: "radar"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.radar),
+            label: l10n.hp_rainRadar,
+          ),
         ],
       ),
     );

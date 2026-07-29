@@ -61,7 +61,7 @@ class _ForecastPageState extends State<ForecastPage> {
           Divider(indent: leftPadding, endIndent: leftPadding),
           if (loading) const Center(child: CircularProgressIndicator()),
           if (!loading && !forecastExists)
-            const Center(child: Text("No forecast available")),
+            Center(child: Text(l10n.fp_noForecastAvailable)),
           if (!loading &&
               forecastExists &&
               screenHeight > minHeightForNextHourForecast)
@@ -126,7 +126,7 @@ class _ForecastPageState extends State<ForecastPage> {
   List<DropdownMenuItem<String>> getLocationDropDownItems() {
     List<DropdownMenuItem<String>> result = [];
     List<String> names = widget.locationProvider.getLocationNames();
-    names.add("your locations...");
+    names.add("${l10n.fp_yourLocations} ...");
     for (var name in names) {
       result.add(
         DropdownMenuItem<String>(
@@ -155,7 +155,7 @@ class _ForecastPageState extends State<ForecastPage> {
               "${l10n.fp_forecastFor} ${fullDateFormatter.format(weather.localTime)}",
               style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
-            Text(" (local time)", style: const TextStyle(fontSize: 15)),
+            Text(" ${l10n.fp_localTime}", style: const TextStyle(fontSize: 15)),
           ],
         ),
         const SizedBox(height: 10),
@@ -181,11 +181,12 @@ class _ForecastPageState extends State<ForecastPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (weather.temp != null) Text("temp.: ${weather.temp}°C"),
-        if (weather.cloudCover != null) Text("clouds: ${weather.cloudCover}%"),
+        if (weather.temp != null) Text("${l10n.fp_temp} ${weather.temp}°C"),
+        if (weather.cloudCover != null)
+          Text("${l10n.fp_clouds} ${weather.cloudCover}%"),
         Row(
           children: [
-            Text("wind:"),
+            Text(l10n.fp_wind),
             Text(
               weather.windSpeed != null
                   ? " ${weather.windSpeed!.toStringAsFixed(0)}km/h"

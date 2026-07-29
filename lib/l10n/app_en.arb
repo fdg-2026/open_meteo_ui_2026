@@ -11,5 +11,37 @@
         }
     },
     "fp_weatherIn": "Weather in:",
-    "fp_forecastFor": "Forecast for"
+    "fp_forecastFor": "Forecast for",
+    "fp_localTime": "(local time)",
+    "fp_temp": "temp:",
+    "@fp_temp": {
+        "description": "this should be an abbreviation for temperature. It should be as short as the following 2 texts for cloud coverage and wind speed."
+    },
+    "fp_clouds": "clouds:",
+    "fp_wind": "wind:",
+    "fp_yourLocations": "your locations",
+    "fp_noForecastAvailable": "no forecast available",
+    "sp_pageTitle": "Settings",
+    "sp_themeTitle": "Use light or dark mode for this app?",
+    "sp_themeSystem": "same as defined in System",
+    "sp_themeLight": "always light",
+    "sp_themeDark": "always dark",
+    "sp_localeTitle": "Which language to use in this app?",
+    "sp_localeSystem": "same as defined in System",
+    "sp_localeEN": "🇬🇧 always English",
+    "sp_localeDE": "🇩🇪 always German",
+    "sp_versionInfo": "This is version {version} from {date}.",
+    "@sp_versionInfo": {
+        "description": "Informs the user which version of this app he has installed.",
+        "placeholders": {
+            "version": {
+                "type": "String" 
+            },
+            "date": {
+                "type": "String" 
+            }
+        }
+    },
+    "hp_forecast": "Forecast",
+    "hp_rainRadar": "Rain radar"
 }
