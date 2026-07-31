@@ -46,5 +46,9 @@
         }
     },
     "hp_forecast": "天气预报",
-    "hp_rainRadar": "降雨雷达"
+    "hp_rainRadar": "降雨雷达",
+    "lp_title": "管理您的位置",
+    "lp_addNew": "添加新位置：",
+    "lp_searchNew": "搜索新位置",
+    "lp_selectOrDelete": "选择或删除现有位置："
 }

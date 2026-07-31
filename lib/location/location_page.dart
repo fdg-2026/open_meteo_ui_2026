@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../l10n/app_localizations.dart';
 import 'location_data.dart';
 import 'location_provider.dart';
 
@@ -12,6 +13,8 @@ class LocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage> {
+  AppLocalizations get l10n => AppLocalizations.of(context)!;
+
   void addLocation(LocationData location) {
     if (widget.locationProvider.nameExists(location.name)) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -45,7 +48,7 @@ class _LocationPageState extends State<LocationPage> {
     debugPrint("build in LocationPage: languageCode=$languageCode");
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Manage your locations"),
+        title: Text(l10n.lp_title),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Divider(height: 1, thickness: 1),
@@ -56,7 +59,7 @@ class _LocationPageState extends State<LocationPage> {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Text("Add a new location:", style: TextStyle(fontSize: 20)),
+            Text(l10n.lp_addNew, style: TextStyle(fontSize: 20)),
             const SizedBox(height: 10),
             RawAutocomplete<LocationData>(
               textEditingController: TextEditingController(),
@@ -95,8 +98,8 @@ class _LocationPageState extends State<LocationPage> {
                     return TextField(
                       controller: textEditingController,
                       focusNode: focusNode,
-                      decoration: const InputDecoration(
-                        labelText: 'Search for new location',
+                      decoration: InputDecoration(
+                        labelText: l10n.lp_searchNew,
                         border: OutlineInputBorder(),
                       ),
                     );
@@ -135,10 +138,7 @@ class _LocationPageState extends State<LocationPage> {
             const SizedBox(height: 20),
             Divider(),
             const SizedBox(height: 20),
-            Text(
-              "Select or delete an existing location:",
-              style: TextStyle(fontSize: 20),
-            ),
+            Text(l10n.lp_selectOrDelete, style: TextStyle(fontSize: 20)),
 
             Expanded(
               child: ListView(

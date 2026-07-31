@@ -46,5 +46,9 @@
         }
     },
     "hp_forecast": "Forecast",
-    "hp_rainRadar": "Rain radar"
+    "hp_rainRadar": "Rain radar",
+    "lp_title": "Manage your locations",
+    "lp_addNew": "Add a new location:",
+    "lp_searchNew": "Search for new location",
+    "lp_selectOrDelete": "Select or delete an existing location:"
 }

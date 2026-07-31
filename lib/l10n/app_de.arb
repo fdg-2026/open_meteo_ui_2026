@@ -24,5 +24,9 @@
     "sp_localeZH": "🇨🇳 vereinfachtes Chinesisch",
     "sp_versionInfo": "Dies ist Version {version} vom {date}.",
     "hp_forecast": "Vorhersage",
-    "hp_rainRadar": "Regen Radar"
+    "hp_rainRadar": "Regen Radar",
+    "lp_title": "Orte verwalten",
+    "lp_addNew": "Neuen Ort hinzufügen:",
+    "lp_searchNew": "Nach neuem Ort suchen",
+    "lp_selectOrDelete": "Bestehenden Ort auswählen oder löschen:"
 }
