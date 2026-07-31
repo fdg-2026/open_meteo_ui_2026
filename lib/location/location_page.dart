@@ -41,6 +41,8 @@ class _LocationPageState extends State<LocationPage> {
 
   @override
   Widget build(BuildContext context) {
+    String languageCode = Localizations.localeOf(context).languageCode;
+    debugPrint("build in LocationPage: languageCode=$languageCode");
     return Scaffold(
       appBar: AppBar(
         title: const Text("Manage your locations"),
@@ -67,6 +69,7 @@ class _LocationPageState extends State<LocationPage> {
                 }
                 var result = await widget.locationProvider.getLocationProposals(
                   textEditingValue.text,
+                  languageCode,
                 );
                 return result;
               },

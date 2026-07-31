@@ -161,11 +161,19 @@ class LocationProvider {
   // They know Grossostheim at the end, but only when you have typed the full word,
   // you do not get suggestions before, same for "Aschaf" for example.
 
-  Future<List<LocationData>> getLocationProposals(String text) async {
+  Future<List<LocationData>> getLocationProposals(
+    String text,
+    String languageCode,
+  ) async {
     List<LocationData> result = [];
 
+    // geocoding api does e.g. not support "zs" (simplified Chinese) as language
+    if (languageCode != "de" && languageCode != "fr" && languageCode != "es") {
+      languageCode = "en";
+    }
+
     final url =
-        'https://geocoding-api.open-meteo.com/v1/search?name=$text&count=10&language=de&feature_code=PPL,PPLA,PPLC&format=json';
+        'https://geocoding-api.open-meteo.com/v1/search?name=$text&count=10&language=$languageCode&feature_code=PPL,PPLA,PPLC&format=json';
 
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
